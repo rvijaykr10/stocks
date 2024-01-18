@@ -6,7 +6,7 @@ from keras.models import Sequential
 from keras.layers import LSTM, Dense, Dropout
 
 # Load the data
-data = pd.read_csv('nifty_50.csv')
+data = pd.read_csv('icici.csv')
 data['Date'] = pd.to_datetime(data['Date'])
 data.set_index('Date', inplace=True)
 
@@ -55,9 +55,11 @@ y_pred = model.predict(X_test)
 y_pred = scaler.inverse_transform(y_pred)
 
 # Plot the results
+# Plot the results
 plt.plot(scaler.inverse_transform(y_test.reshape(-1,1)), label='True')
 plt.plot(y_pred, label='Predicted')
 plt.xlabel('Time')
 plt.ylabel('Stock Price')
+plt.title('ICICI Stock Price Prediction - icici.csv')  # Adding the title here
 plt.legend()
 plt.show()
